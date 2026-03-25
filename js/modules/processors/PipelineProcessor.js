@@ -14,17 +14,9 @@ export class PipelineProcessor {
         this.isRunning = false;
         this.processingInterval = null;
         this.processingDelay = options.processingDelay || 1000;
-        this.failureRate = options.failureRate ?? 0.1; // 10% default
+        this.failureRate = options.failureRate || 0.1; // 10% de falhas simuladas
         this.concurrentJobs = 0;
         this.maxConcurrent = options.maxConcurrent || 3;
-    }
-
-    set failureRate(value) {
-        this._failureRate = Math.max(0, Math.min(1, value));
-    }
-
-    get failureRate() {
-        return this._failureRate ?? 0.1;
     }
 
     /**
@@ -70,7 +62,7 @@ export class PipelineProcessor {
         if (!job) return;
 
         this.concurrentJobs++;
-        
+
         try {
             await this.processJob(job);
         } finally {
@@ -92,16 +84,16 @@ export class PipelineProcessor {
         try {
             // Verifica idempotência
             const idempotencyCheck = await idempotencyService.check(job.hash);
-            
+
             if (idempotencyCheck.exists && idempotencyCheck.status === 'completed') {
                 appLogger.logPipeline(job.id, 'IDEMPOTENCY', 'deduplicated', {
                     originalJobId: idempotencyCheck.jobId
                 });
-                
+
                 queueService.complete(job.id, idempotencyCheck.result);
-                eventBus.publish(PipelineEvents.JOB_COMPLETED, { 
-                    jobId: job.id, 
-                    deduplicated: true 
+                eventBus.publish(PipelineEvents.JOB_COMPLETED, {
+                    jobId: job.id,
+                    deduplicated: true
                 });
                 return;
             }
@@ -117,11 +109,11 @@ export class PipelineProcessor {
 
             // Completa o job
             queueService.complete(job.id, result);
-            
-            appLogger.logPipeline(job.id, 'PROCESS', 'success', { 
-                duration: job.getDuration() 
+
+            appLogger.logPipeline(job.id, 'PROCESS', 'success', {
+                duration: job.getDuration()
             });
-            
+
             eventBus.publish(PipelineEvents.JOB_COMPLETED, { jobId: job.id, result });
 
         } catch (error) {
@@ -137,7 +129,7 @@ export class PipelineProcessor {
     simulateProcessing(job) {
         return new Promise((resolve, reject) => {
             const duration = 500 + Math.random() * 1500; // 0.5s - 2s
-            
+
             setTimeout(() => {
                 // Simula falhas aleatórias
                 if (Math.random() < this.failureRate) {
@@ -155,18 +147,18 @@ export class PipelineProcessor {
     async transformData(data) {
         // Simula transformações de dados
         const transformations = [];
-        
+
         // Validação
         transformations.push({ step: 'validate', status: 'ok' });
-        
+
         // Normalização
         const normalized = this.normalizeData(data);
         transformations.push({ step: 'normalize', status: 'ok' });
-        
+
         // Enriquecimento
         const enriched = this.enrichData(normalized);
         transformations.push({ step: 'enrich', status: 'ok' });
-        
+
         return {
             processed: true,
             timestamp: new Date().toISOString(),
@@ -205,9 +197,9 @@ export class PipelineProcessor {
      * Trata erros de processamento
      */
     async handleError(job, error) {
-        appLogger.logPipeline(job.id, 'PROCESS', 'error', { 
+        appLogger.logPipeline(job.id, 'PROCESS', 'error', {
             error: error.message,
-            attempt: job.attempts 
+            attempt: job.attempts
         });
 
         // Verifica se deve retry
@@ -215,25 +207,25 @@ export class PipelineProcessor {
 
         if (job.status === JobStatus.ERROR) {
             // Máximo de tentativas atingido
-            await idempotencyService.storeResult(job.hash, job.id, 'error', { 
-                error: error.message 
+            await idempotencyService.storeResult(job.hash, job.id, 'error', {
+                error: error.message
             });
-            
-            eventBus.publish(PipelineEvents.JOB_FAILED, { 
-                jobId: job.id, 
-                error: error.message 
+
+            eventBus.publish(PipelineEvents.JOB_FAILED, {
+                jobId: job.id,
+                error: error.message
             });
         } else {
             // Retry
-            eventBus.publish(PipelineEvents.JOB_RETRY, { 
-                jobId: job.id, 
-                attempt: job.attempts 
+            eventBus.publish(PipelineEvents.JOB_RETRY, {
+                jobId: job.id,
+                attempt: job.attempts
             });
         }
 
-        eventBus.publish(PipelineEvents.ERROR, { 
-            jobId: job.id, 
-            error: error.message 
+        eventBus.publish(PipelineEvents.ERROR, {
+            jobId: job.id,
+            error: error.message
         });
     }
 
@@ -242,12 +234,12 @@ export class PipelineProcessor {
      */
     async submitJob(data) {
         const job = new Job(data);
-        
+
         appLogger.logPipeline(job.id, 'SUBMIT', 'received', { hash: job.hash });
 
         // Verifica idempotência antes de enfileirar
         const idempotencyCheck = await idempotencyService.check(job.hash);
-        
+
         if (idempotencyCheck.exists) {
             appLogger.logPipeline(job.id, 'IDEMPOTENCY', 'found', {
                 status: idempotencyCheck.status,
@@ -256,14 +248,14 @@ export class PipelineProcessor {
         }
 
         const result = queueService.enqueue(job);
-        
+
         if (result.added) {
             eventBus.publish(PipelineEvents.JOB_CREATED, { jobId: job.id });
             eventBus.publish(PipelineEvents.QUEUE_UPDATED, queueService.getStats());
             appLogger.logPipeline(job.id, 'ENQUEUE', 'success');
         } else {
-            appLogger.logPipeline(job.id, 'ENQUEUE', 'rejected', { 
-                reason: result.reason 
+            appLogger.logPipeline(job.id, 'ENQUEUE', 'rejected', {
+                reason: result.reason
             });
         }
 
