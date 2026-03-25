@@ -62,10 +62,6 @@
 
     /* ─── DARK/LIGHT TOGGLE ─── */
     .theme-toggle {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 999;
       width: 48px;
       height: 48px;
       border-radius: 12px;
@@ -475,7 +471,114 @@
     .about-visual-inner {
       position: relative;
       z-index: 2;
-      font-size: 64px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .metric {
+      background: rgba(0, 217, 255, 0.1);
+      border: 1px solid var(--card-border-dark);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    body.light .metric {
+      background: rgba(0, 217, 255, 0.08);
+      border-color: var(--card-border-light);
+    }
+
+    .metric:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 217, 255, 0.15);
+    }
+
+    .metric .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dark-secondary);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    body.light .metric .label {
+      color: var(--text-light-secondary);
+    }
+
+    .metric .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .skill-bars {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .skill-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-name {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-dark-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    body.light .skill-name {
+      color: var(--text-light-secondary);
+    }
+
+    .bar {
+      height: 6px;
+      background: rgba(0, 217, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    body.light .bar {
+      background: rgba(0, 217, 255, 0.08);
+    }
+
+    .fill {
+      height: 100%;
+      background: var(--gradient-1);
+      border-radius: 3px;
+      transition: width 1s ease-out;
+      animation: fillBar 1.5s ease-out forwards;
+    }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: var(--fill-width); }
     }
 
     /* ─── PROJECTS ─── */
@@ -813,7 +916,6 @@
   </style>
 </head>
 <body class="dark">
-  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
   <header>
     <div class="logo">PS.</div>
@@ -822,6 +924,7 @@
       <a href="#projects">Projetos</a>
       <a href="#contact">Contato</a>
     </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
   </header>
 
   <main>
@@ -837,7 +940,7 @@
           <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">
             Ver Projetos
           </button>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <a href="#contact" class="btn btn-secondary">Entre em Contato</a>
         </div>
       </div>
     </section>
@@ -870,7 +973,36 @@
         </div>
 
         <div class="about-visual">
-          <div class="about-visual-inner">📊</div>
+          <div class="about-visual-inner">
+            <div class="dashboard">
+              <div class="metric">
+                <span class="label">Projetos</span>
+                <span class="value">20+</span>
+              </div>
+              <div class="metric">
+                <span class="label">Experiência</span>
+                <span class="value">2 anos</span>
+              </div>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">SQL & NoSQL</span>
+                  <div class="bar"><div class="fill" style="--fill-width: 75%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Power BI & Looker</span>
+                  <div class="bar"><div class="fill" style="--fill-width: 60%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">React & Node.js</span>
+                  <div class="bar"><div class="fill" style="--fill-width: 50%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Python & C#</span>
+                  <div class="bar"><div class="fill" style="--fill-width: 40%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -889,7 +1021,7 @@
         <div class="project-card" onclick="openModal(0)">
           <div class="project-header">
             <div class="project-icon">🏥</div>
-            <h3 class="project-title">Sistema SUS</h3>
+            <h3 class="project-title">Sistema de Senhas e Atendimentos</h3>
             <p class="project-subtitle">Painel de Atendimento Operacional</p>
           </div>
           <div class="project-content">
@@ -907,7 +1039,7 @@
           <div class="project-header">
             <div class="project-icon">✍️</div>
             <h3 class="project-title">Editor de Artigos</h3>
-            <p class="project-subtitle">Rich Text Editor & Publishing</p>
+            <p class="project-subtitle">Editor de Texto HTML Direto</p>
           </div>
           <div class="project-content">
             <p class="project-description">
@@ -942,7 +1074,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Pedro Scarpatti. Construído com ❤️ e muita automação.</p>
+    <p>© 2026 Pedro Scarpatti.</p>
   </footer>
 
   <!-- MODALS -->
@@ -957,7 +1089,7 @@
 
   <script>
     const projects = [
-      { title: 'Sistema SUS', file: 'projects/Gerenciador%20de%20Senhas.html' },
+      { title: 'Sistema de Senhas e Atendimentos', file: 'projects/Gerenciador%20de%20Senhas.html' },
       { title: 'Editor de Artigos', file: 'projects/monolithic-article-editor.html' },
     ];
 

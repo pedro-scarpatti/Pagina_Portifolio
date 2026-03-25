@@ -385,13 +385,15 @@
         Usando playlist pública do Canal Saúde (Fiocruz) como exemplo.
         Em produção: autoplay=1&mute=1&loop=1&controls=0&playlist=ID
       -->
-      <iframe
+      <video
         id="yt-frame"
-        src="public\videos\Polyphia - Playing God.mp4"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        onload="document.getElementById('vid-loading').classList.add('oculto')"
-      ></iframe>
+        src="..\public\videos\Polyphia_Playing_God.mp4"
+        autoplay
+        muted
+        loop
+        onloadeddata="document.getElementById('vid-loading').classList.add('oculto')"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;"
+      ></video>
       <div class="video-loading" id="vid-loading">
         <div class="vl-spinner"></div>
         <span class="vl-txt">Carregando conteúdo…</span>
