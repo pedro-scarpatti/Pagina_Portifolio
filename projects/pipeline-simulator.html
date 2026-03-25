@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pipeline de Dados</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pipeline-simulator.css">
+</head>
+
+<body>
+    <div class="pipeline-page">
+        <div class="pipeline-container">
+            <header class="pipeline-header">
+                <h1>🔄 Simulador de Pipeline de Dados</h1>
+                <p>Demonstração de arquitetura ETL com filas, idempotência e processamento assíncrono</p>
+            </header>
+
+            <div class="pipeline-grid">
+                <!-- Painel de Entrada -->
+                <aside class="input-panel">
+                    <h2>Novo Job</h2>
+
+                    <form id="job-form">
+                        <div class="form-group">
+                            <label for="job-name">Nome do Job</label>
+                            <input type="text" id="job-name" placeholder="Ex: Processar Pedido #123" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="job-data">Dados (JSON)</label>
+                            <textarea id="job-data" placeholder='{"orderId": 123, "amount": 99.99}' required>{
+  "orderId": 1001,
+  "customerId": "CUST-001",
+  "amount": 299.99,
+  "items": [
+    {"sku": "PROD-001", "qty": 2},
+    {"sku": "PROD-002", "qty": 1}
+  ]
+}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="job-priority">Prioridade</label>
+                            <select id="job-priority">
+                                <option value="0">Normal</option>
+                                <option value="1">Alta</option>
+                                <option value="2">Crítica</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Enviar Job</button>
+                            <button type="button" id="btn-generate" class="btn btn-secondary">Gerar Aleatório</button>
+                        </div>
+                    </form>
+
+                    <hr style="margin: 24px 0; border: none; border-top: 1px solid #e2e8f0;">
+
+                    <h2>Controles</h2>
+                    <div class="controls-section">
+                        <button id="btn-start" class="btn btn-primary">▶ Iniciar Pipeline</button>
+                        <button id="btn-stop" class="btn btn-secondary">⏹ Parar Pipeline</button>
+                        <button id="btn-clear" class="btn btn-ghost">🗑 Limpar Tudo</button>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label>Taxa de Falha (Simulação)</label>
+                        <input type="range" id="failure-rate" min="0" max="50" value="10">
+                        <span id="failure-rate-value">10%</span>
+                    </div>
+                </aside>
+
+                <!-- Painel de Dashboard -->
+                <main class="dashboard-panel">
+                    <!-- Métricas -->
+                    <div class="metrics-grid">
+                        <div class="metric-card pending">
+                            <h3>Pendentes</h3>
+                            <div class="metric-value" id="metric-pending">0</div>
+                        </div>
+                        <div class="metric-card processing">
+                            <h3>Processando</h3>
+                            <div class="metric-value" id="metric-processing">0</div>
+                        </div>
+                        <div class="metric-card completed">
+                            <h3>Concluídos</h3>
+                            <div class="metric-value" id="metric-completed">0</div>
+                        </div>
+                        <div class="metric-card error">
+                            <h3>Erros</h3>
+                            <div class="metric-value" id="metric-error">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Fila -->
+                    <section class="queue-section">
+                        <h2>Fila de Processamento</h2>
+                        <div class="queue-container" id="queue-container">
+                            <p style="color: #94a3b8; text-align: center; padding: 40px;">
+                                Nenhum job na fila. Envie um job para começar.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Logs -->
+                    <section class="log-section">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h2>Logs de Execução</h2>
+                            <button id="btn-export-logs" class="btn btn-ghost"
+                                style="padding: 4px 12px; font-size: 12px;">
+                                Exportar
+                            </button>
+                        </div>
+                        <div class="log-container" id="log-container">
+                            <div class="log-entry">
+                                <span class="log-timestamp">--:--:--</span>
+                                <span class="log-level info">INFO</span>
+                                <span class="log-message">Pipeline pronto. Aguardando jobs...</span>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/pipeline-simulator.js"></script>
+</body>
+
+</html>

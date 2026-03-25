@@ -17,7 +17,7 @@ export class EventBus {
         if (!this.subscribers.has(event)) {
             this.subscribers.set(event, new Set());
         }
-        
+
         this.subscribers.get(event).add(callback);
 
         // Retorna função para unsubscribir
@@ -75,7 +75,7 @@ export class EventBus {
         return new Promise((resolve, reject) => {
             const correlationId = `corr_${Date.now()}`;
             const responseEvent = `${event}:response:${correlationId}`;
-            
+
             // Setup listener para resposta
             const unsubscribe = this.subscribe(responseEvent, (response) => {
                 unsubscribe();

@@ -143,10 +143,21 @@
     color: var(--color-gray-900);
 }
 
-.metric-card.pending .metric-value { color: var(--status-pending); }
-.metric-card.processing .metric-value { color: var(--status-processing); }
-.metric-card.completed .metric-value { color: var(--status-completed); }
-.metric-card.error .metric-value { color: var(--status-error); }
+.metric-card.pending .metric-value {
+    color: var(--status-pending);
+}
+
+.metric-card.processing .metric-value {
+    color: var(--status-processing);
+}
+
+.metric-card.completed .metric-value {
+    color: var(--status-completed);
+}
+
+.metric-card.error .metric-value {
+    color: var(--status-error);
+}
 
 /* Queue Visualization */
 .queue-section {
@@ -304,10 +315,21 @@
     min-width: 50px;
 }
 
-.log-level.info { color: var(--color-info); }
-.log-level.success { color: var(--color-success); }
-.log-level.warning { color: var(--color-warning); }
-.log-level.error { color: var(--color-error); }
+.log-level.info {
+    color: var(--color-info);
+}
+
+.log-level.success {
+    color: var(--color-success);
+}
+
+.log-level.warning {
+    color: var(--color-warning);
+}
+
+.log-level.error {
+    color: var(--color-error);
+}
 
 .log-message {
     flex: 1;

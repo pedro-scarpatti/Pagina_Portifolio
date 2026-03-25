@@ -101,16 +101,16 @@ export class DataValidator {
         for (const [field, rules] of Object.entries(schema)) {
             try {
                 const value = data[field];
-                
+
                 // Aplica cada regra do campo
                 for (const rule of rules) {
                     const [ruleName, ...params] = rule.split(':');
                     const validator = this.rules.get(ruleName);
-                    
+
                     if (!validator) {
                         throw new Error(`Regra de validação desconhecida: ${ruleName}`);
                     }
-                    
+
                     validator(value, field, ...params);
                 }
 

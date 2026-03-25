@@ -11,7 +11,7 @@ export class QueueService {
         this.processing = new Map(); // Jobs em processamento
         this.completed = []; // Histórico de concluídos
         this.failed = []; // Histórico de falhas
-        
+
         this.maxSize = options.maxSize || 1000;
         this.maxConcurrent = options.maxConcurrent || 3;
         this.retentionTime = options.retentionTime || 24 * 60 * 60 * 1000;
@@ -54,7 +54,7 @@ export class QueueService {
         const job = this.queue.shift();
         this.processing.set(job.id, job);
         job.start();
-        
+
         return job;
     }
 
@@ -63,17 +63,17 @@ export class QueueService {
      */
     complete(jobId, result = null) {
         const job = this.processing.get(jobId);
-        
+
         if (!job) {
             throw new Error(`Job ${jobId} não encontrado em processamento`);
         }
 
         job.complete();
         job.result = result;
-        
+
         this.processing.delete(jobId);
         this.completed.push(job);
-        
+
         // Limita histórico
         if (this.completed.length > 100) {
             this.completed.shift();
@@ -87,7 +87,7 @@ export class QueueService {
      */
     fail(jobId, error) {
         const job = this.processing.get(jobId);
-        
+
         if (!job) {
             throw new Error(`Job ${jobId} não encontrado em processamento`);
         }
@@ -98,7 +98,7 @@ export class QueueService {
         if (job.status === JobStatus.ERROR) {
             // Máximo de tentativas atingido
             this.failed.push(job);
-            
+
             if (this.failed.length > 100) {
                 this.failed.shift();
             }
@@ -165,12 +165,12 @@ export class QueueService {
      */
     purge() {
         const cutoff = Date.now() - this.retentionTime;
-        
-        this.completed = this.completed.filter(j => 
+
+        this.completed = this.completed.filter(j =>
             new Date(j.completedAt).getTime() > cutoff
         );
-        
-        this.failed = this.failed.filter(j => 
+
+        this.failed = this.failed.filter(j =>
             new Date(j.completedAt).getTime() > cutoff
         );
     }

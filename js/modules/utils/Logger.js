@@ -34,7 +34,7 @@ export class Logger {
      */
     emit(logEntry) {
         this.logs.push(logEntry);
-        
+
         // Mantém apenas os últimos logs
         if (this.logs.length > this.maxLogs) {
             this.logs = this.logs.slice(-this.maxLogs);
@@ -109,9 +109,9 @@ export class Logger {
      */
     logPipeline(jobId, operation, status, details = {}) {
         const message = `Job ${jobId}: ${operation} - ${status}`;
-        const level = status === 'success' ? LogLevel.SUCCESS : 
-                      status === 'error' ? LogLevel.ERROR : LogLevel.INFO;
-        
+        const level = status === 'success' ? LogLevel.SUCCESS :
+            status === 'error' ? LogLevel.ERROR : LogLevel.INFO;
+
         this.emit(this.createEntry(level, message, {
             jobId,
             operation,
@@ -155,9 +155,9 @@ export class Logger {
         if (format === 'json') {
             return JSON.stringify(this.logs, null, 2);
         }
-        
+
         if (format === 'text') {
-            return this.logs.map(log => 
+            return this.logs.map(log =>
                 `[${log.timestamp}] [${log.context}] ${log.level.toUpperCase()}: ${log.message}`
             ).join('\n');
         }

@@ -8,7 +8,7 @@ import { appLogger } from './modules/utils/Logger.js';
 // Inicialização da aplicação
 document.addEventListener('DOMContentLoaded', () => {
     appLogger.info('Aplicação inicializada');
-    
+
     initNavigation();
     initSmoothScroll();
     initScrollEffects();
@@ -39,14 +39,14 @@ function initNavigation() {
 
     // Atualiza link ativo baseado na seção visível
     const sections = document.querySelectorAll('section[id]');
-    
+
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            
+
             if (scrollY >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
@@ -66,10 +66,10 @@ function initNavigation() {
  */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            
+
             if (target) {
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
@@ -89,7 +89,7 @@ function initSmoothScroll() {
  */
 function initScrollEffects() {
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -102,7 +102,7 @@ function initScrollEffects() {
 /**
  * Mostra modal de arquitetura
  */
-window.showArchitecture = function(project) {
+window.showArchitecture = function (project) {
     const architectures = {
         pipeline: {
             title: 'Arquitetura do Pipeline de Dados',

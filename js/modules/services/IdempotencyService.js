@@ -15,7 +15,7 @@ export class IdempotencyService {
      */
     async check(hash) {
         const entry = this.store.get(hash);
-        
+
         if (!entry) {
             return { exists: false };
         }
@@ -64,7 +64,7 @@ export class IdempotencyService {
                 this.store.delete(hash);
             }
         }
-        
+
         // Agenda próxima limpeza
         setTimeout(() => this.cleanup(), 60 * 60 * 1000); // A cada hora
     }
@@ -99,13 +99,13 @@ export class IdempotencyService {
     export() {
         const data = {};
         const now = Date.now();
-        
+
         for (const [hash, entry] of this.store.entries()) {
             if (now <= entry.expiresAt) {
                 data[hash] = entry;
             }
         }
-        
+
         return data;
     }
 
