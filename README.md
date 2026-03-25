@@ -1,29 +1,3 @@
-# 🚀 Pedro Scarpatti — Portfólio
-
-Portfólio de **BI Developer & Data Analyst** com UI moderna, dark mode e projetos embarcados.
-
-## ✨ Stack
-
-- **HTML5** — Semântico
-- **CSS3** — Gradientes, animações, glassmorphism
-- **JavaScript Vanilla** — Sem dependências
-- **GitHub Pages** — Deploy instantâneo
-
-## 📁 Estrutura
-
-```
-├── index.html                           # Portfólio principal (SPA)
-├── 📁 projects/                         # Pasta com apps dos modais
-│   ├── Gerenciador de Senhas.html       # Projeto 1: SUS
-│   └── monolithic-article-editor.html   # Projeto 2: Editor
-├── README.md
-├── QUICK-START.md
-└── .gitignore
-```
-
-## 🚀 Deploy
-
-### Localmente
 
 ```bash
 # Opção 1: Clique duplo em index.html
