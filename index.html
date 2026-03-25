@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pedro Scarpatti — Desenvolvedor Backend e Data Engineer. C#, .NET, SQL Server, ETL e pipelines de processamento de dados." />
+  <meta name="description" content="Pedro Scarpatti — Python Developer e Data Engineer. SQL, AI, índices reversos, pipelines de dados e processamento." />
   <meta name="author" content="Pedro Scarpatti" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Pedro Scarpatti — Backend & Data Engineer" />
-  <meta property="og:description" content="Portfolio profissional com simulador interativo de pipeline de dados." />
+  <meta property="og:title" content="Pedro Scarpatti — Python Developer & Data Engineering" />
+  <meta property="og:description" content="Portfolio profissional: pipelines de dados, sistemas de busca inteligente e integração com IA." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#07071A" />
 
-  <title>Pedro Scarpatti — Backend & Data Engineer</title>
+  <title>Pedro Scarpatti — Python Developer &amp; Data Engineering</title>
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2307071A'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='18' font-weight='bold' fill='%2300D4FF'>PS</text></svg>" />
 
@@ -150,7 +150,7 @@
       0%,100% { border-color: rgba(0,212,255,0.15); }
       50%      { border-color: rgba(0,212,255,0.4); }
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
     /* ============================================================
        HEADER
@@ -217,7 +217,6 @@
       padding: 100px 0 80px;
     }
 
-    /* Animated background orbs */
     .hero__orb {
       position: absolute; border-radius: 50%;
       filter: blur(90px); pointer-events: none; z-index: 0;
@@ -241,7 +240,6 @@
       animation: orb1 14s ease-in-out infinite reverse;
     }
 
-    /* Grid background */
     .hero__grid {
       position: absolute; inset: 0; z-index: 0;
       background-image:
@@ -274,7 +272,6 @@
       box-shadow: 0 0 6px var(--accent-2);
       animation: pulse 2s ease-in-out infinite;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
     .hero h1 {
       font-size: clamp(44px, 7.5vw, 80px);
@@ -511,7 +508,6 @@
       background: rgba(0,212,255,0.06);
     }
 
-    /* Metrics card */
     .about__metrics {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -548,7 +544,6 @@
       margin-top: 6px; display: block;
     }
 
-    /* Skill bars */
     .skill-bars { display: flex; flex-direction: column; gap: 14px; }
     .skill-bar__header { display: flex; justify-content: space-between; margin-bottom: 6px; }
     .skill-bar__name { font-size: 0.78rem; font-weight: 500; color: var(--text-2); }
@@ -735,12 +730,13 @@
 
         <h1>Pedro<br><span class="gradient-text">Scarpatti</span></h1>
 
-        <p class="hero__role">Backend Developer &amp; Data Engineer</p>
-        <p class="hero__stack">C# · .NET 8 · SQL Server · ETL · Pipelines de Dados</p>
+        <p class="hero__role">Python Developer &amp; Data Engineering</p>
+        <p class="hero__stack">Python · SQL · AI · Processamento de Dados · Buscas</p>
 
         <p class="hero__desc">
-          Desenvolvo sistemas que processam dados em escala, com arquitetura robusta
-          e código que sobrevive em produção. Filas, idempotência, logging — entendo o todo.
+          Desenvolvo pipelines de dados, integrações com modelos de IA
+          e sistemas de busca inteligente. Especialidades: índices reversos,
+          processamento de texto e consultas otimizadas em grande escala.
         </p>
 
         <div class="hero__cta">
@@ -866,30 +862,32 @@
       <div class="about-grid">
         <div class="about__text">
           <p>
-            Desenvolvedor backend com foco em <strong>C# / .NET</strong> e
-            <strong>SQL Server</strong>. Trabalhei no setor público (SESA/SUS) construindo
-            sistemas de integração e análise de dados operacionais — onde falhas não são
-            aceitáveis e rastreabilidade é obrigatória.
+            Desenvolvedor Python com foco em <strong>processamento de dados e IA</strong>.
+            Trabalho com extração, transformação e carga de dados em escala, integração com
+            modelos de linguagem e construção de sistemas de busca inteligente.
           </p>
           <p>
-            Meu diferencial é pensar em <strong>arquitetura antes de código</strong>:
-            entendo como filas, idempotência, logging estruturado e обработка de erros
-            se encaixam em sistemas que precisam rodar 24/7.
+            Minhas especialidades incluem <strong>índice reverso</strong>,
+            <strong>otimização de consultas SQL</strong>, pipelines de dados
+            e arquiteturas que lidam com grandes volumes de informação.
+            Trabalho no setor público (SESA/SUS) construindo sistemas de integração
+            e análise operacional.
           </p>
           <p>
-            Este portfólio demonstra exatamente isso — não projetinhos de estudo,
-            mas a <strong>mentalidade de engenharia</strong> por trás de sistemas de dados reais.
+            Este portfólio demonstra a <strong>mentalidade de engenharia de dados</strong>:
+            não projetinhos de estudo, mas sistemas que processam, indexam e pesquisam
+            informação em escala.
           </p>
 
           <div class="about__skills">
-            <span class="skill-chip">C# / .NET 8</span>
-            <span class="skill-chip">SQL Server / T-SQL</span>
-            <span class="skill-chip">ASP.NET Core</span>
-            <span class="skill-chip">Entity Framework</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">SQL / PostgreSQL</span>
+            <span class="skill-chip">AI / LLMs</span>
+            <span class="skill-chip">Índices Reversos</span>
             <span class="skill-chip">ETL / Pipelines</span>
-            <span class="skill-chip">REST APIs</span>
+            <span class="skill-chip">Busca Semântica</span>
             <span class="skill-chip">JavaScript ES6+</span>
-            <span class="skill-chip">Git / Docker</span>
+            <span class="skill-chip">Git</span>
           </div>
         </div>
 
@@ -904,28 +902,28 @@
               <span class="metric__label">Projetos principais</span>
             </div>
             <div class="metric">
-              <span class="metric__val">3</span>
-              <span class="metric__label">Sistemas no ar</span>
-            </div>
-            <div class="metric">
               <span class="metric__val">100%</span>
               <span class="metric__label">JavaScript puro</span>
+            </div>
+            <div class="metric">
+              <span class="metric__val">Python</span>
+              <span class="metric__label">Linguagem principal</span>
             </div>
           </div>
 
           <div class="skill-bars">
             <div class="skill-bar">
               <div class="skill-bar__header">
-                <span class="skill-bar__name">C# / .NET</span>
-                <span class="skill-bar__pct">72%</span>
+                <span class="skill-bar__name">Python</span>
+                <span class="skill-bar__pct">75%</span>
               </div>
               <div class="skill-bar__track">
-                <div class="skill-bar__fill" style="--w:72%;width:0;width:var(--w)"></div>
+                <div class="skill-bar__fill" style="--w:75%;width:0;width:var(--w)"></div>
               </div>
             </div>
             <div class="skill-bar">
               <div class="skill-bar__header">
-                <span class="skill-bar__name">SQL / T-SQL</span>
+                <span class="skill-bar__name">SQL / PostgreSQL</span>
                 <span class="skill-bar__pct">80%</span>
               </div>
               <div class="skill-bar__track">
@@ -934,11 +932,11 @@
             </div>
             <div class="skill-bar">
               <div class="skill-bar__header">
-                <span class="skill-bar__name">ETL / Pipelines</span>
-                <span class="skill-bar__pct">68%</span>
+                <span class="skill-bar__name">AI / LLMs</span>
+                <span class="skill-bar__pct">65%</span>
               </div>
               <div class="skill-bar__track">
-                <div class="skill-bar__fill" style="--w:68%;width:0;width:var(--w)"></div>
+                <div class="skill-bar__fill" style="--w:65%;width:0;width:var(--w)"></div>
               </div>
             </div>
             <div class="skill-bar">
@@ -967,20 +965,20 @@
       <div class="skills-grid">
 
         <div class="skill-group">
-          <h3 class="skill-group__title">Backend</h3>
+          <h3 class="skill-group__title">Linguagens &amp; Dados</h3>
           <div class="skill-group__list">
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">C# / .NET 8</span>
+                <span class="skill-item__name">Python</span>
                 <span class="skill-item__level">Avançado</span>
               </div>
               <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:72%;width:0;width:var(--w)"></div>
+                <div class="skill-item__fill" style="--w:75%;width:0;width:var(--w)"></div>
               </div>
             </div>
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">SQL Server / T-SQL</span>
+                <span class="skill-item__name">SQL / PostgreSQL</span>
                 <span class="skill-item__level">Avançado</span>
               </div>
               <div class="skill-item__track">
@@ -989,37 +987,28 @@
             </div>
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">ASP.NET Core</span>
+                <span class="skill-item__name">JavaScript ES6+</span>
                 <span class="skill-item__level">Intermediário</span>
               </div>
               <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:65%;width:0;width:var(--w)"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-item__header">
-                <span class="skill-item__name">Entity Framework</span>
-                <span class="skill-item__level">Intermediário</span>
-              </div>
-              <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:60%;width:0;width:var(--w)"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-item__header">
-                <span class="skill-item__name">REST APIs</span>
-                <span class="skill-item__level">Intermediário</span>
-              </div>
-              <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:70%;width:0;width:var(--w)"></div>
+                <div class="skill-item__fill" style="--w:58%;width:0;width:var(--w)"></div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="skill-group">
-          <h3 class="skill-group__title">Data &amp; ETL</h3>
+          <h3 class="skill-group__title">IA &amp; Processamento de Dados</h3>
           <div class="skill-group__list">
+            <div class="skill-item">
+              <div class="skill-item__header">
+                <span class="skill-item__name">LLMs / OpenAI API</span>
+                <span class="skill-item__level">Intermediário</span>
+              </div>
+              <div class="skill-item__track">
+                <div class="skill-item__fill" style="--w:65%;width:0;width:var(--w)"></div>
+              </div>
+            </div>
             <div class="skill-item">
               <div class="skill-item__header">
                 <span class="skill-item__name">ETL / Pipelines</span>
@@ -1031,29 +1020,20 @@
             </div>
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">Dapper</span>
+                <span class="skill-item__name">Índices Reversos</span>
                 <span class="skill-item__level">Intermediário</span>
               </div>
               <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:62%;width:0;width:var(--w)"></div>
+                <div class="skill-item__fill" style="--w:60%;width:0;width:var(--w)"></div>
               </div>
             </div>
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">Power BI</span>
+                <span class="skill-item__name">Busca Semântica</span>
                 <span class="skill-item__level">Básico</span>
               </div>
               <div class="skill-item__track">
                 <div class="skill-item__fill" style="--w:45%;width:0;width:var(--w)"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-item__header">
-                <span class="skill-item__name">Python (básico)</span>
-                <span class="skill-item__level">Básico</span>
-              </div>
-              <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:35%;width:0;width:var(--w)"></div>
               </div>
             </div>
           </div>
@@ -1082,15 +1062,6 @@
             </div>
             <div class="skill-item">
               <div class="skill-item__header">
-                <span class="skill-item__name">JavaScript</span>
-                <span class="skill-item__level">Intermediário</span>
-              </div>
-              <div class="skill-item__track">
-                <div class="skill-item__fill" style="--w:58%;width:0;width:var(--w)"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-item__header">
                 <span class="skill-item__name">HTML / CSS</span>
                 <span class="skill-item__level">Intermediário</span>
               </div>
@@ -1114,9 +1085,9 @@
       </div>
 
       <p class="contact__desc">
-        Procuro oportunidades em backend, dados ou pipelines — remote ou híbrido.
-        Se precisa de alguém que entende como sistemas de processamento de dados
-        funcionam de verdade, chama.
+        Procuro oportunidades em Python, dados ou IA — remote ou híbrido.
+        Se precisa de alguém que entende como processar, indexar e pesquisar
+        grandes volumes de dados, chama.
       </p>
 
       <div class="contact__links">
@@ -1154,18 +1125,12 @@
   </div>
 
   <script>
-    /* ============================================================
-       PROJECT CONFIG
-       ============================================================ */
     const PROJECTS = [
       { title: 'Sistema de Senhas e Atendimentos',    file: 'projects/Gerenciador%20de%20Senhas.html' },
       { title: 'Editor de Artigos',                   file: 'projects/monolithic-article-editor.html' },
       { title: 'Simulador de Pipeline de Dados',      file: 'pipeline-simulator.html' },
     ];
 
-    /* ============================================================
-       MODAL
-       ============================================================ */
     function openModal(index) {
       const project = PROJECTS[index];
       if (!project) return;
@@ -1186,20 +1151,13 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    /* ============================================================
-       HEADER SCROLL EFFECT
-       ============================================================ */
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
 
-    /* ============================================================
-       ACTIVE NAV LINK ON SCROLL
-       ============================================================ */
     const sections = document.querySelectorAll('section[id]');
     const navLinks  = document.querySelectorAll('.nav a');
-
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(sec => {
@@ -1215,9 +1173,6 @@
       });
     }, { passive: true });
 
-    /* ============================================================
-       SMOOTH SCROLL
-       ============================================================ */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
