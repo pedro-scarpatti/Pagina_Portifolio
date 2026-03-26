@@ -100,7 +100,10 @@
 
                     <!-- Fila -->
                     <section class="queue-section">
-                        <h2>Fila de Processamento</h2>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h2>Fila de Processamento</h2>
+                            <span id="queue-count" style="font-size:0.8rem; color:#94a3b8;"></span>
+                        </div>
                         <div class="queue-container" id="queue-container">
                             <p style="color: #94a3b8; text-align: center; padding: 40px;">
                                 Nenhum job na fila. Envie um job para começar.
@@ -131,7 +134,7 @@
         </div>
     </div>
 
-    <script type="module" src="../js/pipeline-simulator.js"></script>
+    <script type="module" src="..\js\pipeline-simulator.js"></script>
 </body>
 
 </html>

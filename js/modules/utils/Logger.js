@@ -2,7 +2,9 @@
  * Logger - Sistema de logging estruturado
  * Simula um sistema de logging de backend (Serilog, NLog, etc.)
  */
-
+const IS_DEV = window.location.hostname === 'localhost' || 
+               window.location.hostname === '127.0.0.1';
+               
 export const LogLevel = {
     DEBUG: 'debug',
     INFO: 'info',
@@ -50,7 +52,7 @@ export class Logger {
         });
 
         // Também loga no console em desenvolvimento
-        if (process?.env?.NODE_ENV === 'development' || true) {
+        if (IS_DEV || true) {
             const styles = this.getConsoleStyles(logEntry.level);
             console.log(
                 `%c[${logEntry.timestamp}] [${logEntry.context}] ${logEntry.level.toUpperCase()}: ${logEntry.message}`,

@@ -26,6 +26,13 @@
     --status-completed: #10b981;
     --status-error: #ef4444;
     
+    /* Aliases para o pipeline-simulator.js */
+    --text-1: var(--color-gray-900);
+    --text-2: var(--color-gray-300);
+    --text-3: var(--color-gray-500);
+    --accent:  var(--color-primary);
+    --font-mono: var(--font-family-mono);
+
     /* Cores Neutras */
     --color-white: #ffffff;
     --color-gray-50: #f8fafc;
